@@ -34,24 +34,39 @@ app = Flask(__name__)
 def welcome():
     return(
     '''
-    Welcome to the Climate Analysis API!
-    Available Routes:
-    /api/v1.0/precipitation
-    /api/v1.0/stations
-    /api/v1.0/tobs
-    /api/v1.0/temp/start/end
+    <h1>Welcome to the Climate Analysis API!</h1>
+    </br>
+    <h4>Available Routes:</h4>
+    </br>
+    <div>
+        <li>
+            <a href="http://127.0.0.1:5000/api/v1.0/precipitation">/api/v1.0/precipitation</a>
+        </li>
+        <li>
+             <a href="http://127.0.0.1:5000/api/v1.0/stations">/api/v1.0/stations</a>
+        </li>
+        <li>
+             <a href="http://127.0.0.1:5000/api/v1.0/tobs">/api/v1.0/tobs</a>
+        </li>
+        <li>
+             <a href="http://127.0.0.1:5000/api/v1.0/temp/start/end">/api/v1.0/temp/start/end</a>
+        </li>
+    </div>
     ''')
+
+
+@app.route("/api/v1.0/precipitation")
+def precipitation():
+   prev_year = dt.date(2017, 8, 23) - dt.timedelta(days=365)
+   precipitation = session.query(Measurement.date, Measurement.prcp).\
+    filter(Measurement.date >= prev_year).all()
+   precip = {date: prcp for date, prcp in precipitation}
+   return jsonify(precip)
+
+
+############THIS NEEDS TO GO LAST!!!
 if __name__ == '__main__': 
    app.run(port=5000, debug=True) # application will start listening for web request on port 5000
-
-#import app
-
-#print("example __name__ = %s", __name__)
-
-#if __name__ == "__main__":
-#    print("example is being run directly.")
-#else:
-#    print("example is being imported")
 
 
 
