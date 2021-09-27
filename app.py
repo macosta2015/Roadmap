@@ -6,7 +6,7 @@ app = Flask(__name__)
 @app.route('/')
 #Slash is known as the highest level of hierarchy in any computer system
 def hello_world():
-    return "Hello world"
+    return "Hello world, TEST2"
 
 
 if __name__ == '__main__': 

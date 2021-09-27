@@ -1,7 +1,7 @@
-
-import detetime as dt
+#import detetime as dt
 import numpy as np
 import pandas as pd
+import datetime as dt
 
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
@@ -10,18 +10,27 @@ from sqlalchemy import create_engine, func
 
 from flask import Flask, jsonify
 
-engine = create_engine("sqlite:///hawaii.sqlite")
-Base = automap_base()
-Base.prepare(engine, reflec=True)
+# Conect to the data base (conection)
+engine = create_engine("sqlite:///Resources/hawaii.sqlite")
+#engine = create_engine("sqlite:///hawaii.sqlite")
 
+
+# Reflect the data base (objects)
+Base = automap_base()
+Base.prepare(engine, reflect=True)
+
+# Variables object from DB
 Measurement = Base.classes.measurement
 Station = Base.classes.station
 
+# Session create (query)
 session = Session(engine)
 
-app = Flask(__name__)
-@app.route("/")
 
+# This the new Flask app instance
+app = Flask(__name__)
+
+@app.route("/")
 def welcome():
     return(
     '''
@@ -32,15 +41,17 @@ def welcome():
     /api/v1.0/tobs
     /api/v1.0/temp/start/end
     ''')
+if __name__ == '__main__': 
+   app.run(port=5000, debug=True) # application will start listening for web request on port 5000
 
-import app
+#import app
 
-print("example __name__ = %s", __name__)
+#print("example __name__ = %s", __name__)
 
-if __name__ == "__main__":
-    print("example is being run directly.")
-else:
-    print("example is being imported")
+#if __name__ == "__main__":
+#    print("example is being run directly.")
+#else:
+#    print("example is being imported")
 
 
 
