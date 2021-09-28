@@ -7,7 +7,7 @@
 
 ## Flask
 #### Flask is a new tool to create a webapplication. We are using our local host so that we can display this data. 
-### The following is the code used in terminal. We then need to copy the address and past is on the search bar of the browser.
+#### The following is the code used in terminal. We then need to copy the address and past is on the search bar of the browser.
 <img width="1073" alt="Screen Shot 2021-09-26 at 11 40 39 PM" src="https://user-images.githubusercontent.com/25726054/135009610-59209b49-6be9-47ef-9391-b904f72d26ad.png">
 
 
